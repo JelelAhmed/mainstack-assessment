@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Button } from "@chakra-ui/react";
 import TransactionRow from "./TransactionRow";
-import { Transaction } from "../../types";
+import { type Transaction } from "../../types";
 
 const DUMMY_TXS: Transaction[] = [
   {

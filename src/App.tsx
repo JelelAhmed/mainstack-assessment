@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-const DashboardPage = () => <div>"Hi there"</div>;
+import DashboardPage from "./pages/Dashboard";
 
 export default function App() {
   return (

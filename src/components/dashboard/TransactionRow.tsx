@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex, Box, Text, Avatar, HStack } from "@chakra-ui/react";
 import { format } from "date-fns";
-import { Transaction } from "../../types";
+import { type Transaction } from "../../types";
 import { formatCurrencyUSD } from "../../utils/formatCurrency";
 import { FiArrowDownLeft, FiArrowUpRight } from "react-icons/fi";
 
