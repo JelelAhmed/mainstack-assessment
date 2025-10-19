@@ -1,4 +1,5 @@
-import { Box, Flex, Heading, Button } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Button, VStack } from "@chakra-ui/react";
+import { Download, Filter } from "lucide-react";
 import TransactionRow from "./TransactionRow";
 import { type Transaction } from "../../types";
 
@@ -38,38 +39,99 @@ const DUMMY_TXS: Transaction[] = [
 
 export default function TransactionsList() {
   return (
-    <Box
-      bg="brand.white"
-      borderRadius="12px"
-      border="1px solid"
-      borderColor="brand.lightGray"
-      p={6}
-    >
-      <Flex justify="space-between" align="center" mb={4}>
+    <Box bg="white" borderRadius="12px" p="0" w="100%" overflow="hidden">
+      {/* Header */}
+      <Flex
+        justify="space-between"
+        align="center"
+        px="24px"
+        py="0"
+        h="72px"
+        borderBottom="1px solid #EFF1F6"
+      >
+        {/* Left side: title + subtitle */}
         <Box>
-          <Heading size="sm" mb={1}>
+          <Heading
+            fontFamily="Degular"
+            fontWeight="700"
+            fontSize="24px"
+            lineHeight="32px"
+            letterSpacing="-0.6px"
+            color="#131316"
+            mb="4px"
+          >
             24 Transactions
           </Heading>
-          <Box fontSize="12px" color="brand.textSecondary">
+          <Text
+            fontFamily="Degular"
+            fontWeight="500"
+            fontSize="14px"
+            lineHeight="16px"
+            letterSpacing="-0.2px"
+            color="#56616B"
+          >
             Your transactions for the last 7 days
-          </Box>
+          </Text>
         </Box>
 
-        <Flex gap={3}>
-          <Button variant="outline" borderRadius="100px">
-            Filter
+        {/* Right side: action buttons */}
+        <Flex gap="12px">
+          <Button
+            variant="unstyled"
+            bg="#EFF1F6"
+            borderRadius="100px"
+            px="20px"
+            py="12px"
+            display="flex"
+            alignItems="center"
+            gap="8px"
+            _hover={{ bg: "#E7E9EF" }}
+          >
+            <Filter size={16} color="#131316" />
+            <Text
+              fontFamily="Degular"
+              fontWeight="600"
+              fontSize="16px"
+              lineHeight="24px"
+              letterSpacing="-0.4px"
+              color="#131316"
+            >
+              Filter
+            </Text>
           </Button>
-          <Button variant="outline" borderRadius="100px">
-            Export list
+
+          <Button
+            variant="unstyled"
+            bg="#EFF1F6"
+            borderRadius="100px"
+            px="20px"
+            py="12px"
+            display="flex"
+            alignItems="center"
+            gap="8px"
+            _hover={{ bg: "#E7E9EF" }}
+          >
+            <Download size={16} color="#131316" />
+            <Text
+              fontFamily="Degular"
+              fontWeight="600"
+              fontSize="16px"
+              lineHeight="24px"
+              letterSpacing="-0.4px"
+              color="#131316"
+            >
+              Export list
+            </Text>
           </Button>
         </Flex>
       </Flex>
 
-      <Box>
+      {/* Transactions (spaced vertically by 24px) */}
+      <VStack pt="24px" pb="24px" px="24px" spacing="24px" align="stretch">
         {DUMMY_TXS.map((tx) => (
           <TransactionRow tx={tx} key={tx.id} />
         ))}
-      </Box>
+      </VStack>
     </Box>
   );
 }
