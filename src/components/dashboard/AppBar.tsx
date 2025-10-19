@@ -1,28 +1,60 @@
-import { VStack, IconButton, Tooltip, Box } from "@chakra-ui/react";
-import { FiLayers, FiFolder, FiPackage } from "react-icons/fi";
+import { Box, VStack, Tooltip } from "@chakra-ui/react";
+import { useState } from "react";
+import LinkInBioIcon from "../icons/LinkInBioIcon";
+import StoreIcon from "../icons/StoreIcon";
+import MediaKitIcon from "../icons/MediaKitIcon";
+import InvoicingIcon from "../icons/InvoicingIcon";
 
 export default function AppBar() {
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  const items = [
+    { label: "Link in Bio", Icon: LinkInBioIcon },
+    { label: "Store", Icon: StoreIcon },
+    { label: "Media Kit", Icon: MediaKitIcon },
+    { label: "Invoicing", Icon: InvoicingIcon },
+  ];
+
   return (
-    <VStack
-      spacing={4}
-      align="center"
-      p={2}
-      bg="brand.white"
-      border="1px solid"
-      borderColor="brand.lightGray"
-      borderRadius="12px"
-      minH="240px"
+    <Box
+      position="fixed"
+      left="calc((100vw - 1440px) / 2 + 16px)"
+      top="310px"
+      width="48px"
+      height="192px"
+      display="flex"
+      flexDirection="row"
+      alignItems="flex-start"
+      padding="4px"
+      gap="4px"
+      bg="#FFFFFF"
+      borderRadius="100px"
+      boxShadow="0px 4px 8px rgba(92, 115, 131, 0.08), 0px 6px 12px rgba(92, 115, 131, 0.08)"
+      zIndex="10"
     >
-      <Tooltip label="Overview" placement="right">
-        <IconButton aria-label="overview" icon={<FiLayers />} variant="ghost" />
-      </Tooltip>
-      <Tooltip label="Products" placement="right">
-        <IconButton aria-label="products" icon={<FiFolder />} variant="ghost" />
-      </Tooltip>
-      <Tooltip label="Orders" placement="right">
-        <IconButton aria-label="orders" icon={<FiPackage />} variant="ghost" />
-      </Tooltip>
-      <Box flex="1" />
-    </VStack>
+      <VStack width="40px" height="184px" spacing="8px" align="center">
+        {items.map(({ label, Icon }, index) => (
+          <Tooltip
+            key={label}
+            label={label}
+            placement="right"
+            hasArrow
+            openDelay={100}
+          >
+            <Box
+              as="button"
+              bg="transparent"
+              borderRadius="full"
+              p="8px"
+              transition="all 0.2s ease"
+              onMouseEnter={() => setHovered(index)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <Icon active={hovered === index} />
+            </Box>
+          </Tooltip>
+        ))}
+      </VStack>
+    </Box>
   );
 }

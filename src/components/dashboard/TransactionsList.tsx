@@ -1,6 +1,17 @@
-import { Box, Flex, Heading, Text, Button, VStack } from "@chakra-ui/react";
-import { Download, Filter } from "lucide-react";
+"use client";
+
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Button,
+  VStack,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { Download, ChevronDown } from "lucide-react";
 import TransactionRow from "./TransactionRow";
+import FilterDrawer from "./FilterDrawer";
 import { type Transaction } from "../../types";
 
 const DUMMY_TXS: Transaction[] = [
@@ -38,6 +49,9 @@ const DUMMY_TXS: Transaction[] = [
 ];
 
 export default function TransactionsList() {
+  // ✅ use Chakra's disclosure to control drawer state
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box bg="white" borderRadius="12px" p="0" w="100%" overflow="hidden">
       {/* Header */}
@@ -76,6 +90,7 @@ export default function TransactionsList() {
 
         {/* Right side: action buttons */}
         <Flex gap="12px">
+          {/* ✅ Filter Button — triggers drawer */}
           <Button
             variant="unstyled"
             bg="#EFF1F6"
@@ -86,8 +101,8 @@ export default function TransactionsList() {
             alignItems="center"
             gap="8px"
             _hover={{ bg: "#E7E9EF" }}
+            onClick={onOpen} // 👈 opens the drawer
           >
-            <Filter size={16} color="#131316" />
             <Text
               fontFamily="Degular"
               fontWeight="600"
@@ -98,8 +113,10 @@ export default function TransactionsList() {
             >
               Filter
             </Text>
+            <ChevronDown size={16} />
           </Button>
 
+          {/* Export Button */}
           <Button
             variant="unstyled"
             bg="#EFF1F6"
@@ -111,7 +128,6 @@ export default function TransactionsList() {
             gap="8px"
             _hover={{ bg: "#E7E9EF" }}
           >
-            <Download size={16} color="#131316" />
             <Text
               fontFamily="Degular"
               fontWeight="600"
@@ -122,16 +138,20 @@ export default function TransactionsList() {
             >
               Export list
             </Text>
+            <Download size={16} color="#131316" />
           </Button>
         </Flex>
       </Flex>
 
-      {/* Transactions (spaced vertically by 24px) */}
+      {/* Transactions list */}
       <VStack pt="24px" pb="24px" px="24px" spacing="24px" align="stretch">
         {DUMMY_TXS.map((tx) => (
           <TransactionRow tx={tx} key={tx.id} />
         ))}
       </VStack>
+
+      {/* ✅ Drawer Component */}
+      <FilterDrawer isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 }

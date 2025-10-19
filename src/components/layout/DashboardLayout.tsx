@@ -1,7 +1,6 @@
-// NEW: Wraps dashboard page with Header and optional Footer
 import React from "react";
-import { Box } from "@chakra-ui/react";
-import Header from "./Header";
+import { Box, Container } from "@chakra-ui/react";
+import HeaderWithTopBar from "./HeaderWithTopBar";
 import Footer from "./Footer";
 
 interface Props {
@@ -11,11 +10,17 @@ interface Props {
 export default function DashboardLayout({ children }: Props) {
   return (
     <Box minH="100vh" bg="brand.bg" display="flex" flexDirection="column">
-      <Header />
-      <Box flex="1" as="main" py={6}>
-        {children}
+      <Box maxW="1440px" mx="auto" w="100%" position="relative">
+        <HeaderWithTopBar />
+
+        <Box as="main" mt="64px">
+          <Container maxW="100%" px={{ base: 4, md: 6 }}>
+            {children}
+          </Container>
+        </Box>
+
+        <Footer />
       </Box>
-      <Footer />
     </Box>
   );
 }

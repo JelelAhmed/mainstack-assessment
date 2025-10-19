@@ -1,5 +1,4 @@
-import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Text, Flex } from "@chakra-ui/react";
 import {
   LineChart,
   Line,
@@ -19,14 +18,23 @@ const sampleData = [
 
 export default function RevenueChart() {
   return (
-    <Box w="100%" h={{ base: 220, md: 280 }}>
-      <ResponsiveContainer width="100%" height="100%">
+    <Box w="765px" position="relative">
+      <ResponsiveContainer width="100%" height={257}>
         <LineChart
           data={sampleData}
           margin={{ top: 16, right: 24, left: 8, bottom: 8 }}
         >
-          <XAxis dataKey="date" axisLine={false} tickLine={false} />
-          <YAxis axisLine={false} tickLine={false} />
+          <XAxis
+            dataKey="date"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "#56616B", fontSize: 12 }}
+          />
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "#56616B", fontSize: 12 }}
+          />
           <Tooltip />
           <Line
             type="monotone"
@@ -34,9 +42,33 @@ export default function RevenueChart() {
             stroke="#FF5403"
             strokeWidth={3}
             dot={false}
+            strokeLinecap="round"
           />
         </LineChart>
       </ResponsiveContainer>
+
+      {/* Bottom rounded divider and date labels */}
+      <Box position="relative" mt="12px">
+        <Box w="100%" h="1px" bg="#DBDEE6" borderRadius="full" />
+        <Flex justify="space-between" align="center" mt="10px">
+          <Text
+            color="#56616B"
+            fontSize="14px"
+            fontWeight="500"
+            letterSpacing="-0.2px"
+          >
+            Apr 1, 2022
+          </Text>
+          <Text
+            color="#56616B"
+            fontSize="16px"
+            fontWeight="500"
+            letterSpacing="-0.2px"
+          >
+            Apr 30, 2022
+          </Text>
+        </Flex>
+      </Box>
     </Box>
   );
 }
