@@ -1,7 +1,6 @@
-// src/api/index.ts
-import { User } from "../types";
-import { Wallet } from "../types";
-import { Transaction } from "../types/transactions";
+import { type User } from "../types";
+import { type Wallet } from "../types";
+import { type Transaction } from "../types";
 
 const BASE_URL = "https://fe-task-api.mainstack.io";
 
