@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Flex,
   Icon,
@@ -20,7 +18,7 @@ import {
   FiChevronDown,
 } from "react-icons/fi";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom"; // ✅ React Router
+import { Link, useLocation } from "react-router-dom";
 import SidebarApps from "./SidebarApps";
 
 const menuItems = [
@@ -34,11 +32,11 @@ export default function Navbar() {
   const menuGap = useBreakpointValue({ base: 3, md: 5, lg: 6 });
   const { isOpen, onToggle, onClose } = useDisclosure();
   const [selectedApp, setSelectedApp] = useState<string | null>(null);
-  const location = useLocation(); // ✅ get current route
+  const location = useLocation();
 
   const handleAppSelect = (appLabel: string) => {
     setSelectedApp(appLabel);
-    onClose(); // close popover after selection
+    onClose();
   };
 
   return (

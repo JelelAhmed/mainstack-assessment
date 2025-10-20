@@ -1,11 +1,12 @@
 import { Box, Text, Button, Flex } from "@chakra-ui/react";
-import { formatCurrencyUSD } from "../../utils/formatCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 interface Props {
   balance: number;
+  currency: string;
 }
 
-export default function BalanceDisplay({ balance }: Props) {
+export default function BalanceDisplay({ balance, currency }: Props) {
   return (
     <Flex
       direction="row"
@@ -43,7 +44,7 @@ export default function BalanceDisplay({ balance }: Props) {
           letterSpacing="-1.5px"
           color="#131316"
         >
-          {formatCurrencyUSD(balance)}
+          {formatCurrency(balance, currency)}
         </Text>
       </Box>
 
@@ -65,7 +66,7 @@ export default function BalanceDisplay({ balance }: Props) {
         px="28px"
         py="14px"
         _hover={{ opacity: 0.9, bg: "#131316" }}
-        _active={{ opacity: 0.95, transform: "none" }} // no button shift
+        _active={{ opacity: 0.95, transform: "none" }}
       >
         Withdraw
       </Button>

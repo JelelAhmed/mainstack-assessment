@@ -6,3 +6,14 @@ export function formatCurrencyUSD(value: number | null | undefined): string {
     maximumFractionDigits: 2,
   }).format(amount);
 }
+
+export const formatCurrency = (amount: number, currency: string) => {
+  try {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currency || "USD",
+    }).format(amount);
+  } catch {
+    return `$${amount.toFixed(2)}`;
+  }
+};
