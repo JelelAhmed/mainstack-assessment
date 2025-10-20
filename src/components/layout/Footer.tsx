@@ -6,12 +6,8 @@ export default function Footer() {
       as="footer"
       py={4}
       textAlign="center"
-      borderTop="1px solid"
-      borderColor="brand.lightGray"
       color="brand.textSecondary"
       fontSize="12px"
-    >
-      © {new Date().getFullYear()} Mainstack. All rights reserved.
-    </Box>
+    ></Box>
   );
 }

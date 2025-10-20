@@ -169,6 +169,7 @@ import { Download, ChevronDown } from "lucide-react";
 import TransactionRow from "./TransactionRow";
 import FilterDrawer from "./FilterDrawer";
 import { type Transaction } from "../../types";
+import { useState } from "react";
 
 interface Props {
   transactions: Transaction[];
@@ -177,6 +178,20 @@ interface Props {
 
 export default function TransactionsList({ transactions, currency }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [filters, setFilters] = useState<any>(null);
+
+  const handleApplyFilters = (newFilters: any) => {
+    setFilters(newFilters);
+    onClose();
+  };
+
+  // Filter transactions locally (for demo)
+  const filteredTxs = transactions.filter((tx) => {
+    if (filters?.status && tx.status !== filters.status) return false;
+    if (filters?.types?.length && !filters.types.includes(tx.type))
+      return false;
+    return true;
+  });
 
   return (
     <Box bg="white" borderRadius="12px" p="0" w="100%" overflow="hidden">
@@ -199,7 +214,7 @@ export default function TransactionsList({ transactions, currency }: Props) {
             color="#131316"
             mb="4px"
           >
-            {transactions.length} Transactions
+            {filteredTxs.length} Transactions
           </Heading>
           <Text
             fontFamily="Degular"
@@ -209,7 +224,9 @@ export default function TransactionsList({ transactions, currency }: Props) {
             letterSpacing="-0.2px"
             color="#56616B"
           >
-            Your transactions for the last 7 days
+            {filters
+              ? "Showing filtered transactions"
+              : "Your transactions for the last 7 days"}
           </Text>
         </Box>
 
@@ -268,7 +285,7 @@ export default function TransactionsList({ transactions, currency }: Props) {
 
       {/* Transactions list */}
       <VStack pt="24px" pb="24px" px="24px" spacing="24px" align="stretch">
-        {transactions.map((tx, i) => (
+        {filteredTxs.map((tx, i) => (
           <TransactionRow
             tx={tx}
             key={tx.payment_reference || i}
@@ -277,7 +294,12 @@ export default function TransactionsList({ transactions, currency }: Props) {
         ))}
       </VStack>
 
-      <FilterDrawer isOpen={isOpen} onClose={onClose} />
+      {/* Filter Drawer */}
+      <FilterDrawer
+        isOpen={isOpen}
+        onClose={onClose}
+        onApply={handleApplyFilters}
+      />
     </Box>
   );
 }
