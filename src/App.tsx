@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import DashboardPage from "./pages/Dashboard";
+import RevenuePage from "./pages/revenue";
 
 export default function App() {
   return (
@@ -13,7 +13,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/revenue" replace />} />
 
-        <Route path="/revenue" element={<DashboardPage />} />
+        <Route path="/revenue" element={<RevenuePage />} />
       </Routes>
     </Router>
   );
