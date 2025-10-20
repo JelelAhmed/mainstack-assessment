@@ -452,17 +452,11 @@
 //   );
 // }
 
-import {
-  Box,
-  Flex,
-  Text,
-  Button,
-  chakra,
-  shouldForwardProp,
-} from "@chakra-ui/react";
-import { motion, isValidMotionProp } from "framer-motion";
+import { Box, Flex, Text, Button, type BoxProps } from "@chakra-ui/react";
+import { motion, isValidMotionProp, type HTMLMotionProps } from "framer-motion";
 import { X, Check } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { forwardRef } from "react";
 
 interface FilterDrawerProps {
   isOpen: boolean;
@@ -476,10 +470,27 @@ interface FilterDrawerProps {
   }) => void;
 }
 
-const MotionBox = chakra(motion.div, {
-  shouldForwardProp: (prop) =>
-    isValidMotionProp(prop) || shouldForwardProp(prop),
-});
+// const MotionBox = chakra(motion.div, {
+//   shouldForwardProp: (prop) =>
+//     isValidMotionProp(prop) || shouldForwardProp(prop),
+// });
+
+type MotionBoxProps = BoxProps & HTMLMotionProps<"div">;
+
+// ✅ A hybrid MotionBox that allows animation + Chakra props + events
+export const MotionBox = motion(
+  forwardRef<HTMLDivElement, MotionBoxProps>((props, ref) => {
+    const chakraProps: Record<string, any> = {};
+    const motionProps: Record<string, any> = {};
+
+    Object.entries(props).forEach(([key, value]) => {
+      if (isValidMotionProp(key)) motionProps[key] = value;
+      else chakraProps[key] = value;
+    });
+
+    return <Box ref={ref} {...chakraProps} {...motionProps} />;
+  })
+);
 
 const DATE_FILTERS = [
   "Today",
