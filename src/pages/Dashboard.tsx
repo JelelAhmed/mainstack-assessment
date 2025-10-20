@@ -218,7 +218,14 @@ export default function DashboardPage() {
                 <RevenueChart transactions={transactions} />
               </Box>
 
-              <MetricsContainer wallet={wallet} />
+              <MetricsContainer
+                wallet={{
+                  ledger_balance: wallet?.ledger_balance ?? 0,
+                  total_payout: wallet?.total_payout ?? 0,
+                  total_revenue: wallet?.total_revenue ?? 0,
+                  pending_payout: wallet?.pending_payout ?? 0,
+                }}
+              />
             </Flex>
 
             <Box mt="64px">

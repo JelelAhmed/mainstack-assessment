@@ -598,7 +598,7 @@ export default function FilterDrawer({
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.4 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.25 }}
+        transition={{ duration: 0.25 } as any}
         position="fixed"
         top="0"
         left="0"
@@ -615,7 +615,7 @@ export default function FilterDrawer({
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
-        transition={{ type: "spring", damping: 22, stiffness: 140 }}
+        transition={{ type: "spring", damping: 22, stiffness: 140 } as any}
         position="fixed"
         right="0"
         top="0"

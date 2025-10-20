@@ -3,11 +3,16 @@ import { Box, Container } from "@chakra-ui/react";
 import HeaderWithTopBar from "./HeaderWithTopBar";
 import Footer from "./Footer";
 
-interface Props {
+interface DashboardLayoutProps {
+  user: {
+    first_name: string;
+    last_name: string;
+    email: string;
+  };
   children: React.ReactNode;
 }
 
-export default function DashboardLayout({ children }: Props) {
+export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <Box minH="100vh" bg="brand.bg" display="flex" flexDirection="column">
       <Box maxW="1440px" mx="auto" w="100%" position="relative">

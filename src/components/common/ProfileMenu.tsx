@@ -153,7 +153,8 @@ export default function ProfileMenu({ user }: ProfileMenuProps) {
   ];
 
   const initials =
-    user?.name
+    `${user?.first_name || ""} ${user?.last_name || ""}`
+      .trim()
       ?.split(" ")
       .map((n) => n[0]?.toUpperCase())
       .slice(0, 2)
@@ -198,7 +199,8 @@ export default function ProfileMenu({ user }: ProfileMenuProps) {
                 lineHeight="24px"
                 color="#131316"
               >
-                {user?.name || "User"}
+                {`${user?.first_name || ""} ${user?.last_name || ""}`.trim() ||
+                  "User"}
               </Text>
               <Text
                 fontFamily="Degular"
