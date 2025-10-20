@@ -1,73 +1,121 @@
-# React + TypeScript + Vite
+# 🌟 Mainstack Frontend Engineering Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a **React.js frontend implementation** for the Mainstack Frontend Engineering Exercise.
+It replicates the provided Figma design, fetching and displaying data from the given API endpoints.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎨 Figma Design
 
-## React Compiler
+- **Prototype:** Provided via the Mainstack assessment brief
+- **Figma Board:** Accessible through the shared Mainstack design link
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🌐 Live Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**[🚀 View Hosted App](https://mainstack-assessment-3ycx.vercel.app/revenue)**
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 💻 Repository
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**[📂 View Source Code on GitHub](https://github.com/JelelAhmed/mainstack-assessment)**
+
+---
+
+## 🧩 Tech Stack
+
+- **React 18** — UI Library
+- **Vite** — Build Tool
+- **TypeScript** — Type safety
+- **Chakra UI** — Component styling
+- **Framer Motion** — Animations
+- **Recharts** — Data visualization
+- **Native Fetch** — API requests
+- **Vitest + React Testing Library** — Unit testing
+
+---
+
+## 🧪 API Endpoints
+
+| Method  | Endpoint        | Description               |
+| ------- | --------------- | ------------------------- |
+| **GET** | `/user`         | Retrieve user data        |
+| **GET** | `/wallet`       | Retrieve wallet data      |
+| **GET** | `/transactions` | Retrieve all transactions |
+
+> **Base URL:** `https://fe-task-api.mainstack.io`
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/JelelAhmed/mainstack-assessment.git
+cd mainstack-assessment
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2️⃣ Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3️⃣ Run the Development Server
+
+```bash
+npm run dev
+```
+
+Visit **[http://localhost:5173](http://localhost:5173)** to view the app.
+
+---
+
+## 🧪 Running Tests
+
+This project includes **Vitest** and **React Testing Library** setup.
+
+### Run all tests:
+
+```bash
+npm run test
+```
+
+### Run tests in watch mode:
+
+```bash
+npm run test:watch
+```
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+ ├── components/          # Reusable UI components
+ ├── pages/               # Page-level views (Dashboard, Revenue, etc.)
+ ├── hooks/               # Custom hooks
+ ├── utils/               # Helper functions
+ ├── __tests__/           # Unit tests
+ ├── App.tsx              # Root component
+ ├── main.tsx             # Entry point
+ └── setupTests.ts        # Test environment setup
+```
+
+---
+
+## 🧠 Notes & Tips
+
+- UI and layout closely match the **Figma prototype** for pixel perfection.
+- Implemented with **responsive design** for both mobile and desktop.
+
+---
+
+## 🕓 Submission
+
+- **Hosted Page:** [mainstack-assessment-3ycx.vercel.app](https://mainstack-assessment-3ycx.vercel.app/revenue)
+- **GitHub Repo:** [github.com/JelelAhmed/mainstack-assessment](https://github.com/JelelAhmed/mainstack-assessment)
