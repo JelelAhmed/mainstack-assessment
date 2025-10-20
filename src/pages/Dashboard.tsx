@@ -152,7 +152,7 @@ import {
 } from "../components/dashboard";
 import MetricsContainer from "../components/dashboard/MetricsContainer";
 import DashboardLayout from "../components/layout/DashboardLayout";
-import { useUser, useWallet, useTransactions } from "../hooks";
+import { useWallet, useTransactions, useUser } from "../hooks";
 
 export default function DashboardPage() {
   const { data: user, loading: userLoading, error: userError } = useUser();
